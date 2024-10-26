@@ -16,12 +16,12 @@ configViewEngine(app);
 app.use('/', webRoutes);
 
 // simple query
-connection.query(
-    'SELECT * FROM Users',
-    function (err, results, fields) {
-      console.log(">>>>>results= ",results); // results contains rows returned by server console.log(">>>>>fields= ",fields); // fields contains extra meta data about results, if available
-    }
-);
+// connection.query(
+//     'SELECT * FROM Users',
+//     function (err, results, fields) {
+//       console.log(">>>>>results= ",results); // results contains rows returned by server console.log(">>>>>fields= ",fields); // fields contains extra meta data about results, if available
+//     }
+// );
 
 
 app.listen(port, hostname, () => {
