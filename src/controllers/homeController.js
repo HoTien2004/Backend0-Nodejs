@@ -25,7 +25,13 @@ const getABC = (req, res) => {
     res.render('sample.ejs')
 }
 
+const postCreateUser = (req, res) => {
+    console.log("res.body======    ",req.body);
+    res.send('hello world');
+}
+
 module.exports = {
     getHomepage,
-    getABC
+    getABC,
+    postCreateUser
 }
