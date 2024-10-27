@@ -1,5 +1,5 @@
 const connection = require('../config/database');
-
+const { getAllUsers } = require('../services/CRUDService')
 // Demo connection db with NodeJS
 // const getHomepage = (req, res) => {
 //     // process data
@@ -16,8 +16,9 @@ const connection = require('../config/database');
 //     );
 // }
 
-const getHomepage = (req, res) => {
-    return res.render('home.ejs')
+const getHomepage = async (req, res) => {
+    let results = await getAllUsers();
+    return res.render('home.ejs', { listUsers: results });
 }
 
 const getABC = (req, res) => {
@@ -31,17 +32,6 @@ const postCreateUser = async (req, res) => {
     
     console.log(">>> email= ", email, "name= ", name, "city= ", city);
     // let {email, name, city} = res.body;
-
-    // Using placeholders
-    // connection.query(
-    //     `INSERT INTO Users (email, name, city)
-    //      VALUES (?, ?, ?)`,
-    //     [email, name, city],
-    //     function (err, results) {
-    //         console.log(results);
-    //         res.send('Created user succeed!');
-    //     }
-    // );
 
     let [results, fields] = await connection.query(
         `INSERT INTO Users (email, name, city) 
