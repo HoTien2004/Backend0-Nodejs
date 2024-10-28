@@ -26,12 +26,12 @@ const getABC = (req, res) => {
 }
 
 const postCreateUser = async (req, res) => {
-    let email = req.body.email;
-    let name = req.body.myname;
-    let city = req.body.city;
+    // let email = req.body.email;
+    // let name = req.body.myname;
+    // let city = req.body.city;
     
+    let { email, name, city } = res.body;
     console.log(">>> email= ", email, "name= ", name, "city= ", city);
-    // let {email, name, city} = res.body;
 
     let [results, fields] = await connection.query(
         `INSERT INTO Users (email, name, city) 
@@ -47,6 +47,8 @@ const getCreatePage = (req, res) => {
 }
 
 const getUpdatePage = (req, res) => {
+    const userId = req.params.id;
+    console.log(">>> update", req.params, userId)
     return res.render('edit.ejs')
 }
 
