@@ -1,5 +1,5 @@
 const connection = require('../config/database');
-const { getAllUsers } = require('../services/CRUDService')
+const { getAllUsers, getUserByID } = require('../services/CRUDService')
 // Demo connection db with NodeJS
 // const getHomepage = (req, res) => {
 //     // process data
@@ -26,11 +26,11 @@ const getABC = (req, res) => {
 }
 
 const postCreateUser = async (req, res) => {
-    // let email = req.body.email;
-    // let name = req.body.myname;
-    // let city = req.body.city;
+    let email = req.body.email;
+    let name = req.body.myname;
+    let city = req.body.city;
     
-    let { email, name, city } = res.body;
+    // let { email, name, city } = res.body;
     console.log(">>> email= ", email, "name= ", name, "city= ", city);
 
     let [results, fields] = await connection.query(
@@ -43,13 +43,15 @@ const postCreateUser = async (req, res) => {
 }
 
 const getCreatePage = (req, res) => {
-    return res.render('create.ejs')
+    return res.render('create.ejs');
 }
 
-const getUpdatePage = (req, res) => {
+const getUpdatePage = async (req, res) => {
     const userId = req.params.id;
-    console.log(">>> update", req.params, userId)
-    return res.render('edit.ejs')
+
+    let user = await getUserByID(userId);
+    
+    return res.render('edit.ejs', { userEdit : user });
 }
 
 module.exports = {
