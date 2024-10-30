@@ -52,3 +52,7 @@ button {
     cursor: pointer;
     font-size: 30px;
 }
+
+.d-none {
+    display: none;
+}
