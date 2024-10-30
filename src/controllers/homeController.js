@@ -50,9 +50,7 @@ const getCreatePage = (req, res) => {
 
 const getUpdatePage = async (req, res) => {
     const userId = req.params.id;
-
     let user = await getUserByID(userId);
-    
     return res.render('edit.ejs', { userEdit : user });
 }
 
@@ -71,6 +69,15 @@ const postUpdateUser = async (req, res) => {
     res.redirect('/'); // redirect to home page after update
 }
 
+const postDeleteUser = async (req, res) => {
+    const userId = req.params.id;
+    let user = await getUserByID(userId);
+    res.render('delete.ejs', { userEdit : user });
+}
+
+const postHandleRemoveUser = (req, res) => {
+    res.send('Removed user');
+}
 
 module.exports = {
     getHomepage,
@@ -78,5 +85,8 @@ module.exports = {
     postCreateUser,
     getCreatePage,
     getUpdatePage,
-    postUpdateUser
+    postCreateUser,
+    postUpdateUser,
+    postDeleteUser,
+    postHandleRemoveUser
 }
