@@ -1,35 +1,35 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const configViewEngine = require('./config/viewEngine')
-const webRoutes = require('./routes/web');
-const connection = require('./config/database');
-
-const app = express()
+require("dotenv").config();
+const express = require("express");
+const path = require("path");
+const configViewEngine = require("./config/viewEngine");
+const webRoutes = require("./routes/web");
+const connection = require("./config/database");
+const mongoose = require("mongoose");
+const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
 
-// config template engine
+// Config template engine
 configViewEngine(app);
 
-// config req.body
-app.use(express.json()) // for json
-app.use(express.urlencoded({ extended: true })) // for form data
+// Config req.body
+app.use(express.json()); // for json
+app.use(express.urlencoded({ extended: true })); // for form data
 
-// Khai bao route
-app.use('/', webRoutes);
+// Declare route
+app.use("/", webRoutes);
 
-// simple query
-// connection.query(
-//     'SELECT * FROM Users',
-//     function (err, results, fields) {
-//       console.log(">>>>>results= ",results); // results contains rows returned by server console.log(">>>>>fields= ",fields); // fields contains extra meta data about results, if available
-//     }
-// );
+const kittySchema = new mongoose.Schema({
+  name: String,
+});
 
-// Test connection
-connection();
+const Kitten = mongoose.model("Kitten", kittySchema);
+const silence = new Kitten({ name: "Hoi dan it Cat" });
+silence.save();
 
-app.listen(port, hostname, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+(async () => {
+  await connection();
+  app.listen(port, hostname, () => {
+    console.log(`Backend0 app listening on port ${port}`);
+  });
+})();
