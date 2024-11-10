@@ -3,8 +3,8 @@ const express = require("express");
 const path = require("path");
 const configViewEngine = require("./config/viewEngine");
 const webRoutes = require("./routes/web");
+const apiRoutes = require("./routes/api");
 const connection = require("./config/database");
-const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
@@ -18,14 +18,7 @@ app.use(express.urlencoded({ extended: true })); // for form data
 
 // Declare route
 app.use("/", webRoutes);
-
-const kittySchema = new mongoose.Schema({
-  name: String,
-});
-
-const Kitten = mongoose.model("Kitten", kittySchema);
-const silence = new Kitten({ name: "Hoi dan it Cat" });
-silence.save();
+app.use("/v1/api/", apiRoutes);
 
 (async () => {
   await connection();
