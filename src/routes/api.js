@@ -12,4 +12,8 @@ routerAPI.get('/users', apiController.getUsersAPI);
 
 routerAPI.post('/users', apiController.postCreateUserAPI);
 
+routerAPI.put('/users', apiController.putUpdateUserAPI);
+
+routerAPI.delete('/users', apiController.deleteUserAPI);
+
 module.exports = routerAPI;
