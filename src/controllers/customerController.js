@@ -19,12 +19,29 @@ module.exports = {
 
         let customer = await customerService.createCustomerService(customerData);
     
-
         return res.status(200).json(
             {
                 errorCode: 0,
                 data: customer
             }
         )
+    },
+    postCreateArrayCustomer: async (req, res) => {
+        let customers = await customerService.createArrayCustomerService(req.body.customers);
+        if (customers) {
+            return res.status(200).json(
+                {
+                    errorCode: 0,
+                    data: customers
+                }
+            )
+        } else {
+            return res.status(500).json(
+                {
+                    errorCode: -1,
+                    data: customers
+                }
+            )
+        }
     }
 }
