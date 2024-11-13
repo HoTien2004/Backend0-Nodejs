@@ -28,6 +28,6 @@ app.use("/v1/api/", apiRoutes);
 (async () => {
   await connection();
   app.listen(port, hostname, () => {
-    console.log(`Backend0 app listening on port ${port}`);
+    console.log(`BackendZero app listening on port ${port}`);
   });
 })();
