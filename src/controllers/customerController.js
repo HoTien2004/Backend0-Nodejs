@@ -43,5 +43,16 @@ module.exports = {
                 }
             )
         }
+    },
+
+    getAllCustomer: async (req, res) => {
+        let results = await customerService.getAllCustomerService();
+        
+        return res.status(200).json(
+            {
+                EC: 0,
+                data: results
+            }
+        )
     }
 }
