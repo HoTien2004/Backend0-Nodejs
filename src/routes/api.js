@@ -20,5 +20,6 @@ routerAPI.post('/files', apiController.postUploadMultipleFileAPI);
 
 routerAPI.post('/customers', customerController.postCreateCustomer);
 routerAPI.post('/customers-many', customerController.postCreateArrayCustomer);
+routerAPI.get('/customers', customerController.getAllCustomer);
 
 module.exports = routerAPI;

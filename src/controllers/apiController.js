@@ -1,3 +1,4 @@
+const Customer = require("../models/customer");
 const User = require("../models/user");
 const fileService = require("../services/fileService");
 
@@ -89,11 +90,12 @@ const postUploadMultipleFileAPI = async (req, res) => {
     }
 }
 
+
 module.exports = {
     getUsersAPI,
     postCreateUserAPI,
     putUpdateUserAPI,
     deleteUserAPI,
     postUploadSingleFileAPI,
-    postUploadMultipleFileAPI
+    postUploadMultipleFileAPI,
 }
