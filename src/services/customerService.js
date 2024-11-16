@@ -37,9 +37,29 @@ const getAllCustomerService = async () => {
     }
 }
 
-const putUpdateCustomerService = async (id, name, email, address) => {
+const putUpdateCustomerService = async (id) => {
     try {
-        let result = await Customer.updateOne({ _id: id}, { name, email, address });
+        let result = await Customer.updateOne({ _id: id});
+        return result;
+    } catch (err) {
+        console.log(">>> Check error: ", err.message);
+        return null;
+    }
+}
+
+const deleteACustomerService = async (id) => {
+    try {
+        let result = await Customer.deleteById(id);
+        return result;
+    } catch (err) {
+        console.log(">>> Check error: ", err.message);
+        return null;
+    }
+}
+
+const deleteArrayCustomerServices = async (arrIds) => {
+    try {
+        let result = await Customer.delete({ _id: { $in: arrIds } });
         return result;
     } catch (err) {
         console.log(">>> Check error: ", err.message);
@@ -51,5 +71,7 @@ module.exports = {
     createCustomerService,
     createArrayCustomerService,
     getAllCustomerService,
-    putUpdateCustomerService
+    putUpdateCustomerService,
+    deleteACustomerService,
+    deleteArrayCustomerServices
 }
