@@ -45,7 +45,7 @@ module.exports = {
         }
     },
 
-    getAllCustomer: async (req, res) => {
+    getAllCustomers: async (req, res) => {
         let results = await customerService.getAllCustomerService();
         
         return res.status(200).json(
@@ -54,5 +54,17 @@ module.exports = {
                 data: results
             }
         )
-    }
+    },
+    
+    putUpdateCustomers: async (req, res) => {
+        let { id, name, email, address } = req.body;
+        let result = await customerService.putUpdateCustomerService(id, name, email, address);
+
+        return res.status(200).json(
+            {
+                EC: 0,
+                data: result
+            }
+        )
+    } 
 }
