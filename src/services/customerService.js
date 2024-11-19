@@ -27,12 +27,20 @@ const createArrayCustomerService = async (arr) => {
     }
 }
 
-const getAllCustomerService = async (limit, page) => {
+const getAllCustomerService = async (limit, page, name) => {
     try {
         let result = null;
         if (limit && page) {
             let skip = (page - 1) * limit;
-            result = await Customer.find({}).skip(skip).limit(limit).exec();
+            if (name) {
+                result = await Customer.find(
+                    { 
+                        "name": { $regex: '.*' + name + '.*'}
+                    }
+                ).skip(skip).limit(limit).exec();
+            } else {
+                result = await Customer.find({}).skip(skip).limit(limit).exec();
+            }
         } else {
             result = await Customer.find({});
         }
