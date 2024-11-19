@@ -49,10 +49,11 @@ module.exports = {
         console.log(">>> Check limit: ", req.query)
         let limit = req.query.limit;
         let page = req.query.page;
+        let name = req.query.name;
         let result = null;
 
         if (limit && page) {
-            result = await customerService.getAllCustomerService(limit, page);
+            result = await customerService.getAllCustomerService(limit, page, name);
         } else {
             result = await customerService.getAllCustomerService();
         }
