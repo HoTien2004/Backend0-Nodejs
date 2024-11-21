@@ -1,5 +1,6 @@
 const fileService = require("../services/fileService");
 const customerService = require("../services/customerService");
+const aqp = require("api-query-params");
 
 module.exports = {
     postCreateCustomer: async (req, res) => {
@@ -46,14 +47,13 @@ module.exports = {
     },
 
     getAllCustomers: async (req, res) => {
-        console.log(">>> Check limit: ", req.query)
+        console.log(">>> Check limit: ", req.query);
         let limit = req.query.limit;
         let page = req.query.page;
-        let name = req.query.name;
         let result = null;
 
         if (limit && page) {
-            result = await customerService.getAllCustomerService(limit, page, name);
+            result = await customerService.getAllCustomerService(limit, page, req.query);
         } else {
             result = await customerService.getAllCustomerService();
         }
