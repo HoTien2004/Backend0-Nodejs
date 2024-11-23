@@ -29,7 +29,7 @@ app.use("/v1/api/", apiRoutes);
 (async () => {
     try {
           // using mongoose
-  // await connection();
+//   await connection();
 
   // using mongodb driver
   // Connection URL
@@ -42,7 +42,12 @@ const dbName = process.env.DB_NAME;
 await client.connect();
 console.log('Connected successfully to server');
 const db = client.db(dbName);
-const collection = db.collection('documents');
+const collection = db.collection('customers');
+
+// collection.insertOne({"name": "John"})
+// collection.insertOne({"name": "Tien","address": "Ha Noi"})
+let a = await collection.findOne({"address": "Ha Noi"})
+// console.log('>>> find: ', a);
 
 app.listen(port, hostname, () => {
     console.log(`BackendZero app listening on port ${port}`);
