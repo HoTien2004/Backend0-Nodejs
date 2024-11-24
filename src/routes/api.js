@@ -6,6 +6,8 @@ const apiController = require('../controllers/apiController');
 
 const customerController = require('../controllers/customerController');
 
+const projectController = require('../controllers/projectController');
+
 routerAPI.get('/', (req, res) => {
     res.send("hello world with apis");
 });
@@ -24,6 +26,8 @@ routerAPI.get('/customers', customerController.getAllCustomers);
 routerAPI.put('/customers', customerController.putUpdateCustomers);
 routerAPI.delete('/customers', customerController.deleteACustomer);
 routerAPI.delete('/customers-many', customerController.deleteArrayCustomers);
+
+routerAPI.post('/projects', projectController.postCreateProject);
 
 routerAPI.get('/info', (req, res) => {
     console.log(">>> Check req.query: ", req.query)

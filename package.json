@@ -30,7 +30,6 @@
     "express-fileupload": "1.4.0",
     "mongodb": "4.13.0",
     "mongoose": "6.7.2",
-    "mongoose-delete": "0.5.4",
     "mysql2": "2.3.3"
   },
   "devDependencies": {

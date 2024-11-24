@@ -13,7 +13,7 @@ const customerSchema = new mongoose.Schema({
     description: String,
 },
 { 
-    timestamps: true ,
+    timestamps: true,
     // statics: {
     //     findByTienHo(name) {
     //       return this.find({ name: new RegExp(name, 'i') });
