@@ -1,4 +1,5 @@
 const Project = require('../models/project');
+const aqp = require("api-query-params");
 
 module.exports = {
     createProject: async (data) => {
@@ -19,5 +20,22 @@ module.exports = {
             return newResult;
         }
         return null;
+    },
+    getProject: async (queryString) => {
+        const page = queryString.page;
+
+        const { filter, limit, population } = aqp(queryString);
+        console.log('before', filter);
+        console.log('aqp(queryString)', aqp(queryString));
+        delete filter.page;
+        console.log('after', filter);
+        let offset = (page - 1) * limit;
+        result = await Project.
+        find(filter).
+        populate(population).
+        skip(offset).
+        limit(limit).
+        exec();
+        return result;
     }
 }
