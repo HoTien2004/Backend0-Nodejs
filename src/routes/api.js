@@ -29,6 +29,8 @@ routerAPI.delete('/customers-many', customerController.deleteArrayCustomers);
 
 routerAPI.post('/projects', projectController.postCreateProject);
 routerAPI.get('/projects', projectController.getAllProject);
+routerAPI.put('/projects', projectController.updateProject);
+routerAPI.delete('/projects', projectController.deleteProject);
 
 routerAPI.get('/info', (req, res) => {
     console.log(">>> Check req.query: ", req.query)
