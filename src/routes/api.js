@@ -32,6 +32,11 @@ routerAPI.get('/projects', projectController.getAllProject);
 routerAPI.put('/projects', projectController.updateProject);
 routerAPI.delete('/projects', projectController.deleteProject);
 
+routerAPI.post('/tasks', projectController.postCreateTask);
+routerAPI.get('/tasks', projectController.getAllTask);
+routerAPI.put('/tasks', projectController.updateTask);
+routerAPI.delete('/tasks', projectController.deleteTask);
+
 routerAPI.get('/info', (req, res) => {
     console.log(">>> Check req.query: ", req.query)
     return res.status(200).json({

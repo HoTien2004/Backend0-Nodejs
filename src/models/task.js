@@ -22,7 +22,7 @@ const projectSchema = new mongoose.Schema(
 const taskSchema = new mongoose.Schema(
     {
         name: {
-            typeof: String,
+            type: String,
             require: true
         },
         description: String,
