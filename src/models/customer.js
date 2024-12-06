@@ -25,6 +25,6 @@ const customerSchema = new mongoose.Schema({
 // Override all methods
 customerSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
 
-const Customer = mongoose.model("Customer", customerSchema);
+const Customer = mongoose.model("customer", customerSchema);
 
 module.exports = Customer;

@@ -37,6 +37,6 @@ const projectSchema = new mongoose.Schema(
 
 // Override all methods
 projectSchema.plugin(mongoose_delete, { overrideMethods: 'all'});
-const Project = mongoose.model('Project', projectSchema);
+const Project = mongoose.model("project", projectSchema);
 
 module.exports = Project;

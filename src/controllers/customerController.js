@@ -2,9 +2,25 @@ const fileService = require("../services/fileService");
 const customerService = require("../services/customerService");
 const aqp = require("api-query-params");
 
+
 module.exports = {
     postCreateCustomer: async (req, res) => {
         let { name, address, phone, email, description } = req.body;
+
+        const schema = Joi.object({
+            name: Joi.string()
+                .alphanum()
+                .min(3)
+                .max(30)
+                .required(),
+            address: Joi.string(),
+            phone: Joi.string().pattern(new RegExp('^[0-9]{8,11}$')),
+            email: Joi.string().email(),
+            description: Joi.string(),
+        })
+        const result = schema.validate( req.body);
+        console.log(">>> check result", result)
+        return result.send("ok");
 
         let imageURL = "";
 
